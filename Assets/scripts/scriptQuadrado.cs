@@ -5,7 +5,10 @@ using UnityEngine;
 public class scriptQuadrado : MonoBehaviour {
 
 	public string[] quadradoVetor = new string[6];
-	public int contador = 0;
+    //public string[] quadradoVetorCompara = new string[6];
+
+    public bool preenchido = false;
+    public int contador = 0;
 
     public KeyCode btnZ;
     public KeyCode btnX;
@@ -22,98 +25,139 @@ public class scriptQuadrado : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKeyDown(btnZ))
+
+        if(contador > 5)
         {
-            quadradoVetor[contador] = "Marrom";
-            contador = contador + 1;
+            preenchido = true;
+            // seta o contador para a posição máxima do vetor para conseguir voltar
+            contador = 5;
+        }
+        if (contador == -1)
+        {
+            preenchido = false;
+            // seta o contador para a posição mínima do vetor para conseguir incrementar
+            contador = 0;
         }
 
-        if (Input.GetKeyDown(btnX))
+
+        // INÍCIO - inclui os dados no vetor
+        if (preenchido == false)
         {
-            quadradoVetor[contador] = "Rosa";
-            contador = contador + 1;
-        }
 
-        if (Input.GetKeyDown(btnC))
+            if (Input.GetKeyDown(btnZ))
+            {
+                quadradoVetor[contador] = "Marrom";
+                if (contador < 6)
+                    contador = contador + 1;
+            }
+
+            if (Input.GetKeyDown(btnX))
+            {
+                quadradoVetor[contador] = "Rosa";
+                if (contador < 6)
+                    contador = contador + 1;
+            }
+
+            if (Input.GetKeyDown(btnC))
+            {
+                quadradoVetor[contador] = "Amarelo";
+                if (contador < 6)
+                    contador = contador + 1;
+            }
+
+            if (Input.GetKeyDown(btnA))
+            {
+                quadradoVetor[contador] = "Laranja";
+                if (contador < 6)
+                    contador = contador + 1;
+            }
+
+            if (Input.GetKeyDown(btnS))
+            {
+                quadradoVetor[contador] = "Verde";
+                if (contador < 6)
+                    contador = contador + 1;
+            }
+
+            if (Input.GetKeyDown(btnD))
+            {
+                quadradoVetor[contador] = "Roxo";
+                if (contador < 6)
+                    contador = contador + 1;
+            }
+        }
+        // FIM - inclui os dados no vetor
+
+        // INÍCIO - deleta os dados no vetor
+        if (preenchido == true)
         {
-            quadradoVetor[contador] = "Amarelo";
-            contador = contador + 1;
+
+            if (Input.GetKeyDown(btnZ))
+            {
+                if(quadradoVetor[contador] == "Marrom")
+                {
+                quadradoVetor[contador] = "";
+                if (contador > -1)
+                    contador = contador - 1;
+                }
+
+            }
+
+            if (Input.GetKeyDown(btnX))
+            {
+                if (quadradoVetor[contador] == "Rosa")
+                {
+                    quadradoVetor[contador] = "";
+                if (contador > -1)
+                    contador = contador - 1;
+                }
+
+            }
+
+            if (Input.GetKeyDown(btnC))
+            {
+                if (quadradoVetor[contador] == "Amarelo")
+                {
+                    quadradoVetor[contador] = "";
+                if (contador > -1)
+                    contador = contador - 1;
+                }
+
+            }
+
+            if (Input.GetKeyDown(btnA))
+            {
+                if (quadradoVetor[contador] == "Laranja")
+                {
+                    quadradoVetor[contador] = "";
+                if (contador > -1)
+                    contador = contador - 1;
+                }
+
+            }
+
+            if (Input.GetKeyDown(btnS))
+            {
+                if (quadradoVetor[contador] == "Verde")
+                {
+                    quadradoVetor[contador] = "";
+                if (contador > -1)
+                    contador = contador - 1;
+                }
+
+            }
+
+            if (Input.GetKeyDown(btnD))
+            {
+                if (quadradoVetor[contador] == "Roxo")
+                {
+                    quadradoVetor[contador] = "";
+                if (contador > -1)
+                    contador = contador - 1;
+                }
+
+            }
         }
-
-        if (Input.GetKeyDown(btnA))
-        {
-            quadradoVetor[contador] = "Laranja";
-            contador = contador + 1;
-        }
-
-        if (Input.GetKeyDown(btnS))
-        {
-            quadradoVetor[contador] = "Verde";
-            contador = contador + 1;
-        }
-
-        if (Input.GetKeyDown(btnD))
-        {
-            quadradoVetor[contador] = "Roxo";
-            contador = contador + 1;
-        }
-
-        /* if (Input.GetKey(btnZ))
-         {
-             verificaZ = true;
-             quadradoVetor[contador] = "Marrom";
-             contador = contador + 1;
-         }
-         else
-         {
-             verificaZ = false;
-         }
-         if (Input.GetKey(btnX))
-         {
-             verificaX = true;
-         }else
-         {
-             verificaX = false;
-         }
-         if (Input.GetKey(btnC))
-         {
-             verificaC = true;
-         }else
-         {
-             verificaC = false;
-         }*/
-
-        /* if (Input.GetKey(btnZ))
-         {
-             verificaZ = true;
-             quadradoVetor[contador] = "Marrom";
-             contador = contador + 1;
-         }
-         if (Input.GetKey(btnX))
-         {
-             verificaX = true;
-             quadradoVetor[contador] = "Rosa";
-             contador = contador + 1;
-         }
-         if (Input.GetKey(btnC))
-         {
-             verificaZ = true;
-             quadradoVetor[contador] = "Amarelo";
-             contador = contador + 1;
-         }*/
-
+        // FIM - deleta os dados no vetor
     }
-
-    /*void OnMouseDown(){
-
-		quadradoVetor [contador] = gameObject.tag;
-
-        Debug.Log(quadradoVetor[contador]);
-
-        contador = contador + 1;
-		//Debug.Log (gameObject.tag);
-        //Debug.Log(contador);
-		//Destroy (gameObject);
-		//this.GetComponent<MeshRenderer>().material.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-		}*/
 }
